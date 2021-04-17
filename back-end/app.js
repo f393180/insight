@@ -3,7 +3,7 @@ const chalk = require('chalk');
 const morgan = require('morgan');
 const cors = require('cors');
 const logger = require('./src/loggingConfig');
-const userRoutes = require('./src/routes/users/createUserRoutes') 
+const userRoutes = require('./src/routes/users/createUserRoutes');
 
 const app = express();
 
@@ -39,4 +39,5 @@ app.use((err, req, res, next) => {
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => res.status(500).json(errorBuilder(err)));
 
-app.listen(port, () => logger.info(`server running on port: ${chalk.yellowBright(port)}`));
+app.listen(port,
+  () => logger.info(`server running on port: ${chalk.yellowBright(port)}`));
