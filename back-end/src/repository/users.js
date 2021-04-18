@@ -2,13 +2,15 @@ const query = require('./db');
 
 const sql = {
   fetchAll: 'SELECT username, role, first_name, last_name FROM users',
-  fecthByUsername: 'SELECT username, role, first_name, last_name FROM users WHERE username = $1',
+  fetchUserByUsername: 'SELECT username, role, first_name, last_name FROM users WHERE username = $1',
+  loadUserByUsername: 'SELECT * FROM users WHERE username = $1',
   createUser: 'INSERT INTO users(username, password, role, first_name, last_name) VALUES ($1, $2, $3, $4, $5) RETURNING *',
 };
 
-const userRepository = {
+module.exports = {
   fetchAllUsers: () => query(sql.fetchAll),
-  fecthUserByUsername: (username) => query(sql.fecthByUsername, [username]),
+  fetchUserByUsername: (username) => query(sql.fetchUserByUsername, [username]),
+  loadUserByUsername: (username) => query(sql.loadUserByUsername, [username]),
   createUser: (data) => query(sql.createUser, [
     data.username,
     data.password,
@@ -17,5 +19,3 @@ const userRepository = {
     data.lastName,
   ]),
 };
-
-module.exports = userRepository;

@@ -1,9 +1,9 @@
 const logger = require('../../loggingConfig');
-const userService = require('../../service/users');
+const { fetchAllUsers } = require('../../repository/users');
 
 module.exports = (req, res, next) => {
   logger.info('Handling request for fetch all users.');
-  userService.getAllUsers()
+  fetchAllUsers()
     .then((result) => {
       res.status(200).json({
         status: 200,

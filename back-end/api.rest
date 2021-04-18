@@ -1,0 +1,20 @@
+POST http://localhost:9000/users/ HTTP/1.1
+content-type: application/json
+
+{
+    "username": "anandk",
+    "password": "Password@123#",
+    "role": "ROLE_SUPER",
+    "firstName": "Anand",
+    "lastName": "Kumar"
+}
+
+###
+
+POST http://localhost:9000/auth/login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "anandk",
+    "password": "Password@123#"
+}

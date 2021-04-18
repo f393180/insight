@@ -2,7 +2,9 @@ const express = require('express');
 const chalk = require('chalk');
 const morgan = require('morgan');
 const cors = require('cors');
+const passport = require('passport');
 const logger = require('./src/loggingConfig');
+const authRoutes = require('./src/routes/auth/createAuthRoutes');
 const userRoutes = require('./src/routes/users/createUserRoutes');
 
 const app = express();
@@ -16,7 +18,11 @@ app.use(express.json());
 
 app.get('/', (req, res) => res.send('Hello World!!!'));
 
-app.use('/users', userRoutes);
+app.use(passport.initialize());
+require('./src/passportConfig')(passport);
+
+app.use('/auth', passport.authenticate('jwt', { session: false }), authRoutes);
+app.use('/users', passport.authenticate('jwt', { session: false }), userRoutes);
 
 const errorBuilder = (err) => ({
   status: 500,
@@ -28,6 +34,7 @@ const errorBuilder = (err) => ({
     code: err.code,
     severity: err.severity,
     message: err.message,
+    trace: err.stack,
   },
 });
 
