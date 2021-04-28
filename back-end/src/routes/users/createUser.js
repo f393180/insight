@@ -1,7 +1,7 @@
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
-const { bcryptSaltRounds } = require('../../keys');
-const logger = require('../../loggingConfig');
+const { bcryptSaltRounds } = require('../../config/keys');
+const logger = require('../../config/loggingConfig');
 const { fetchUserByUsername, createUser } = require('../../repository/users');
 
 const getUserFormDataFromRequest = (req) => {

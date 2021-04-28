@@ -2,8 +2,8 @@ const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
 const { size } = require('lodash');
 const jwt = require('jsonwebtoken');
-const { jwtSecrete } = require('../../keys');
-const logger = require('../../loggingConfig');
+const { jwtSecrete } = require('../../config/keys');
+const logger = require('../../config/loggingConfig');
 const { loadUserByUsername } = require('../../repository/users');
 
 const getValidationErrorResponseJson = (errors) => ({

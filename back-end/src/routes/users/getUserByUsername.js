@@ -1,5 +1,5 @@
 const { size } = require('lodash');
-const logger = require('../../loggingConfig');
+const logger = require('../../config/loggingConfig');
 const { fetchUserByUsername } = require('../../repository/users');
 
 const notFoundResponseJson = (username) => ({

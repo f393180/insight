@@ -1,4 +1,4 @@
-const logger = require('../../loggingConfig');
+const logger = require('../../config/loggingConfig');
 const { fetchAllUsers } = require('../../repository/users');
 
 module.exports = (req, res, next) => {

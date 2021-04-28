@@ -1,6 +1,6 @@
 const { Pool } = require('pg');
 const _ = require('lodash');
-const logger = require('../loggingConfig');
+const logger = require('../config/loggingConfig');
 
 const pool = new Pool({
   host: process.env.DB_HOST,

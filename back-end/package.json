@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon -r dotenv/config app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "keywords": [],
   "author": "AnandKumar <f393180@outlook.com>",
@@ -31,9 +31,11 @@
     "winston": "^3.3.3"
   },
   "devDependencies": {
+    "chai": "^4.3.4",
     "eslint": "^7.24.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
+    "mocha": "^8.3.2",
     "nodemon": "^2.0.7"
   },
   "nodemonConfig": {
