@@ -3,7 +3,7 @@ const chalk = require('chalk');
 const morgan = require('morgan');
 const cors = require('cors');
 const passport = require('passport');
-const logger = require('./src/loggingConfig');
+const logger = require('./src/config/loggingConfig');
 const authRoutes = require('./src/routes/auth/createAuthRoutes');
 const userRoutes = require('./src/routes/users/createUserRoutes');
 
@@ -19,9 +19,10 @@ app.use(express.json());
 app.get('/', (req, res) => res.send('Hello World!!!'));
 
 app.use(passport.initialize());
-require('./src/passportConfig')(passport);
+require('./src/config/passportConfig')(passport);
 
-app.use('/auth', passport.authenticate('jwt', { session: false }), authRoutes);
+// app.use('/auth', passport.authenticate('jwt', { session: false }), authRoutes);
+app.use('/auth', authRoutes);
 app.use('/users', passport.authenticate('jwt', { session: false }), userRoutes);
 
 const errorBuilder = (err) => ({

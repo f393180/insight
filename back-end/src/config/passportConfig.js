@@ -1,7 +1,7 @@
 const JwtStrategy = require('passport-jwt').Strategy;
 const { ExtractJwt } = require('passport-jwt');
 const { jwtSecrete } = require('./keys');
-const { loadUserByUsername } = require('./repository/users');
+const { loadUserByUsername } = require('../repository/users');
 const logger = require('./loggingConfig');
 
 const opts = {

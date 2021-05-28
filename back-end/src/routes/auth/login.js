@@ -25,17 +25,21 @@ const getLoginFailureResponseJson = () => ({
 
 const createPayload = (user) => ({
   username: user.username,
-  firstName: user.firstName,
-  lastName: user.lastName,
+  firstName: user.first_name,
+  lastName: user.last_name,
   role: user.role,
 });
 
-const getTokenResponseJson = (token) => ({
+const getTokenResponseJson = (token, user) => ({
   status: 200,
   statusText: 'OK',
   message: 'User authenticated successfully.',
   data: {
     token: `Bearer ${token}`,
+    username: user.username,
+    firstName: user.first_name,
+    lastName: user.last_name,
+    role: user.role,
   },
 });
 
@@ -58,7 +62,7 @@ module.exports = (req, res, next) => {
               jwtSecrete,
               { expiresIn: 3600 },
               (err, token) => {
-                res.status(200).json(getTokenResponseJson(token));
+                res.status(200).json(getTokenResponseJson(token, user));
               },
             );
           } else {
